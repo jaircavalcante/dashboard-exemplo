@@ -1,0 +1,39 @@
+<div class="row col-sm-15">
+    <div class="side-menu col-sm-3">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <div class="brand-wrapper">
+                    <!-- Titulo -->
+                    <div class="brand-name-wrapper">
+                        <a class="navbar-brand" href="#">
+                            Área Administrativa
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <div class="side-menu-container">
+                <div class="side-menu-container">
+                    <ul class="nav navbar-nav">
+                        <li ng-repeat="data in vm.menu" class="menu">
+                            <a ng-click="vm.alterarRota(data.rota)">
+                                <span class="{{data.icone}}"></span> {{data.descricao}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Contéudo do Menu  -->
+    <div class="container-fluid col-sm-12">
+        <div class="side-body">
+            <div ng-if="vm.rotaAlterada" style="padding: 5%" ng-controller="MenuController as vm">
+                <div ng-include="'/app/views/admin/admin-informacoes.html'"></div>
+            </div>
+            <ui-view></ui-view>
+        </div>
+    </div>
+</div>

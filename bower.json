@@ -1,0 +1,25 @@
+{
+  "name": "vendas-online",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "jcmendes1 <jcavalcante49@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-ui-router": "^1.0.5",
+    "bootstrap": "^3.3.7",
+    "sweetalert": "^1.1.3",
+    "angular-input-masks": "^2.6.0"
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="/app/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!--  BOWER -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- SCRIPTS -->
+    <script src="/app/app.js"></script>
+    <script src="/app/scripts/routes.js"></script>
+    <script src="/app/views/login/login-controller.js"></script>
+    <script src="/app/views/login/login-service.js"></script>
+    <script src="/app/views/menu/menu-controller.js"></script>
+    <script src="/app/views/menu/menu-service.js"></script>
+    <script src="/app/views/produtos/produtos-controller.js"></script>
+    <script src="/app/views/produtos/produtos-service.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script>
+        // Inicialização do Firebase
+        var config = {
+            apiKey: "AIzaSyAcUZAVasZKda9SpgxoLtr6X2GHNsF0w-s",
+            authDomain: "vendas-app-online.firebaseapp.com",
+            databaseURL: "https://vendas-app-online.firebaseio.com",
+            projectId: "vendas-app-online",
+            storageBucket: "vendas-app-online.appspot.com",
+            messagingSenderId: "610161455127"
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+
+<body ng-app="vendaOnlineApp">
+    <ui-view></ui-view>
+</body>
+
+</html>

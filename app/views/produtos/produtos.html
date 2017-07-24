@@ -1,0 +1,163 @@
+<div id="overlay" ng-if="vm.loader">
+    <div id="loading"></div>
+</div>
+
+<div class="estiloPagina" ng-if="!vm.loader">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            Produtos
+        </div>
+    </div>
+    
+    <div class="botoesDeAcao">
+        <button type="button" class="btn btn-success" ng-click="vm.abrirTelaAdicionarProduto()">Adicionar Produto</button>
+    </div>
+
+    <div class="estiloPagina"  >
+        <h5 ng-if="vm.listaProdutos.length > 0 "><b>Lista de Produtos</b></h5>
+        <div class="panel panel-default">
+            <table class="table table-bordered table-hover" ng-if="vm.listaProdutos.length > 0">
+                <thead>
+                    <th class="alinhamentoTextoTB">Id</th>
+                    <th class="alinhamentoTextoTB">Descrição</th>
+                    <th class="alinhamentoTextoTB">Quantidade</th>
+                    <th class="alinhamentoTextoTB">Preço</th>
+                    <th class="alinhamentoTextoTB">Fornecedor</th>
+                    <th class="alinhamentoTextoTB">Cadastrado em</th>
+                    <th class="alinhamentoTextoTB">Ações</th>
+                </thead>
+                <tbody  ng-repeat="data in vm.listaProdutos">
+                    <td class="alinhamentoTextoTB">{{$index + 1}}</td>
+                    <td class="alinhamentoTextoTB">{{data.descricao}}</td>
+                    <td class="alinhamentoTextoTB">{{data.quantidade}}</td>
+                    <td class="alinhamentoTextoTB">{{data.preco}}</td>
+                    <td class="alinhamentoTextoTB">{{data.fornecedor}}</td>
+                    <td class="alinhamentoTextoTB">{{data.dataDeCadastro}}</td>
+                    <td class="alinhamentoTextoTB">
+                        <i class="glyphicon glyphicon-edit iconeEditar" title="Editar" ng-click="vm.alterarProduto(data, $index)"></i>
+                        <i class="glyphicon glyphicon-info-sign iconeInfo" title="Informações" ng-click="vm.detalharProduto(data)"></i>
+                        <i class="glyphicon glyphicon-trash iconeRemover" title="Remover" ng-click="vm.removerProduto(data, $index)"></i>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="vm.listaProdutos.length == 0" class="alert alert-warning">
+            <i class="glyphicon glyphicon-info-sign"></i> Não existe produtos cadastrados
+        </div>
+    </div>
+</div>
+
+<!-- Modal Adicionar Produto -->
+<div class="modal fade" id="adicionarProduto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Adicionar Produto</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-signin" >
+            <p class="input_title">Descrição do Produto</p>
+            <input type="text" id="inputDescricaoProduto" class="login_box" maxlength="100" ng-model="vm.cadastrarProduto.descricao" required>
+            
+            <p class="input_title">Quantidade</p>
+            <input type="text" id="inputDescricaoProduto" class="login_box" maxlength="3" ng-model="vm.cadastrarProduto.quantidade" required>
+
+            <p class="input_title">Preço</p>
+            <input type="text" id="inputPreco" class="login_box" maxlength="6" ng-model="vm.cadastrarProduto.preco" required>
+            
+            <p class="input_title">Fornecedor</p>
+            <div style="margin-bottom: 20px;">
+                <select ng-model="vm.cadastrarProduto.fornecedor" class="form-control" 
+                    ng-options=" data.nome as data.nome for data in vm.fornecedores"
+                    ng-init="vm.cadastrarProduto.fornecedor == data.nome">
+                </select>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.salvarProduto()">Cadastrar Produto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Detalhe Produto -->
+<div class="modal fade" id="informacoesProduto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detalhe do Produto</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-signin" >
+            <p class="input_title">Descrição do Produto</p>
+            <input type="text" id="inputDescricaoProduto" class="login_box" maxlength="100" ng-model="vm.informacoesProduto.descricao" required>
+            
+            <p class="input_title">Quantidade</p>
+            <input type="text" id="inputDescricaoProduto" class="login_box" maxlength="3" ng-model="vm.informacoesProduto.quantidade" required>
+
+            <p class="input_title">Preço</p>
+            <input type="text" id="inputPreco" class="login_box" maxlength="6" ng-model="vm.informacoesProduto.preco" required>
+            
+            <p class="input_title">Fornecedor</p>
+            <div style="margin-bottom: 20px;">
+                <select ng-model="vm.informacoesProduto.fornecedor" class="form-control" 
+                    ng-options=" data.nome as data.nome for data in vm.fornecedores"
+                    ng-disabled="true"
+                    ng-init="vm.informacoesProduto.fornecedor == data.nome">
+                </select>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Produto -->
+<div class="modal fade" id="editarProduto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Editar Produto</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-signin" >
+            <p class="input_title">Descrição do Produto</p>
+            <input type="text" id="inputDescricaoProduto" class="login_box" maxlength="100" ng-model="vm.editarProduto.descricao" required>
+            
+            <p class="input_title">Quantidade</p>
+            <input type="text" id="inputDescricaoProduto" class="login_box" maxlength="3" ng-model="vm.editarProduto.quantidade" required>
+
+            <p class="input_title">Preço</p>
+            <input type="text" id="inputPreco" class="login_box" maxlength="6" ng-model="vm.editarProduto.preco" required>
+            
+            <p class="input_title">Fornecedor</p>
+            <div style="margin-bottom: 20px;">
+                <select ng-model="vm.editarProduto.fornecedor" class="form-control" 
+                    ng-options=" data.nome as data.nome for data in vm.fornecedores"
+                    ng-init="vm.editarProduto.fornecedor == data.nome">
+                </select>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.salvarEdicaoProduto()">Atualizar Produto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+    
+
+

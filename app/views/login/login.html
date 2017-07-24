@@ -1,0 +1,69 @@
+<script src="https://use.typekit.net/ayg4pcz.js"></script>
+<script>
+    try { Typekit.load({ async: true }); } catch (e) { }
+
+</script>
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <h4><i class="glyphicon glyphicon-cog"></i> Administrativo
+                <h4>
+        </div>
+    </div>
+</nav>
+
+<div class="container" ng-if="vm.telaLogin">
+    <div class="card card-container">
+        <h2 class='login_title text-center'>Login</h2>
+        <hr>
+
+        <form class="form-signin" ng-submit="vm.acessarLogin()">
+            <span id="reauth-email" class="reauth-email"></span>
+            <p class="input_title">Email</p>
+            <input type="text" id="inputEmail" class="login_box" ng-model="vm.usuario.email" required autofocus>
+            <p class="input_title">Password</p>
+            <input type="password" id="inputPassword" class="login_box" ng-model="vm.usuario.senha" required>
+
+            <button class="btn btn-lg btn-primary" type="submit">Acessar</button>
+        </form>
+
+        <div id="div_criar_conta">
+            <i class="glyphicon glyphicon-plus-sign"></i>
+            <a ng-click="vm.alterarTela('CADASTRO_USUARIO')" id="link_criar_conta"> Criar Conta</a>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-if="vm.telaCadastroUsuario">
+    <div class="card card-container">
+        <h2 class='login_title text-center'>Novo Usuário</h2>
+        <hr>
+
+        <form class="form-signin" ng-submit="vm.cadastarUsuario()">
+
+            <p class="input_title">Nome</p>
+            <input type="text" id="inputNome" class="login_box" ng-model="vm.usuario.nome" required>
+
+            <span id="reauth-email" class="reauth-email"></span>
+            <p class="input_title">Email</p>
+
+            <input type="text" id="inputEmail" class="login_box" ng-model="vm.usuario.email" required autofocus>
+            <p class="input_title">Senha</p>
+            <input type="password" id="inputPassword" class="login_box" ng-model="vm.usuario.senha" required>
+
+            <button class="btn btn-lg btn-primary" type="submit">Cadastrar</button>
+        </form>
+        <div id="div_criar_conta">
+            <i class="glyphicon glyphicon-circle-arrow-left"></i>
+            <a ng-click="vm.alterarTela('LOGIN')" id="link_criar_conta"> Já Possui Conta? <b>Fazer Login</b></a>
+        </div>
+    </div>
+</div>
+
+<div id="rodape">
+    <footer class="footer">
+        <h6>2017</h6>
+    </footer>
+</div>
